@@ -1,117 +1,146 @@
-💬 Java Multi-Client Chat Application
+<h1 align="center">💬 Java Multi-Client Chat Application</h1>
 
-A modern desktop chat system built using Java Sockets and Java Swing.
-This project supports multiple clients, private messaging (DM), file transfer, emoji support, and dark mode UI — demonstrating concepts of socket programming, multi-threading, and GUI design.
+<p align="center">
+A modern desktop chat system built using <b>Java Sockets</b> and <b>Java Swing</b>.<br>
+Supports multiple clients, private messaging (DM), file transfer, emoji support, and dark mode — demonstrating <b>socket programming</b>, <b>multi-threading</b>, and <b>GUI design</b>.
+</p>
 
-🚀 Features
-🖥️ Server
-Accepts multiple client connections concurrently
-Tracks online users and prevents duplicate usernames
-Broadcasts join/leave events
+---
 
-Supports:
-✅ Broadcast messages
-🔒 Direct (private) messages
-📁 File transfers via Base64
-🟢 User status updates (Online / Busy / Away)
-Thread-safe collections for managing clients and statuses
+<h2>🚀 Features</h2>
 
-💻 Client (Java Swing GUI)
-Modern, responsive design with chat bubbles
-Dark mode and emoji picker
-File attach button for easy file transfer
-Displays user status and supports private chats
-Auto-scroll, timestamps, and message formatting
+<h3>🖥️ Server</h3>
+<ul>
+  <li>Accepts multiple clients concurrently</li>
+  <li>Tracks online users and prevents duplicate usernames</li>
+  <li>Broadcasts user join/leave events</li>
+  <li>Supports:
+    <ul>
+      <li>✅ Broadcast messages</li>
+      <li>🔒 Direct (Private) messages</li>
+      <li>📁 File transfers via Base64</li>
+      <li>🟢 User status updates (Online / Busy / Away)</li>
+    </ul>
+  </li>
+  <li>Thread-safe collections for managing clients and statuses</li>
+</ul>
 
-🧩 Tools & Technologies
-Language: Java SE (JDK 8+ recommended; tested on JDK 11 & 17)
-GUI: Java Swing (Nimbus Look & Feel)
-Networking: java.net.Socket, ServerSocket
-Concurrency: java.util.concurrent, synchronized collections
-File Transfer: java.util.Base64
-IDE (optional): IntelliJ IDEA / Eclipse / VS Code
-OS Support: Windows / macOS / Linux
+<h3>💻 Client (Java Swing GUI)</h3>
+<ul>
+  <li>Modern, responsive chat-bubble design</li>
+  <li>🌙 Dark mode & 😃 Emoji picker</li>
+  <li>📎 File attach button for easy transfer</li>
+  <li>Displays user statuses & supports private chats</li>
+  <li>Auto-scroll, timestamps, and styled message formatting</li>
+</ul>
 
-⚙️ Message Protocol
-Type	Format	Description
-Broadcast	username: message	Normal chat message
-Private Message	DM::<recipient>::<message>	Sent only to target user
-File Transfer	FILE::<filename>::<base64>	Sends encoded file
-Status	STATUS::<status>	Updates user status
-User Event	USER_EVENT::joined::username / left::username	Notifies all users
-🏗️ Project Architecture
-+-------------+        +-------------------------+
-| ChatClient  | <----> |      ChatServer         |
-| (Swing GUI) |        | (ServerSocket, Threads) |
-+-------------+        +-------------------------+
+---
+
+<h2>🧩 Tools & Technologies</h2>
+
+<table>
+<tr><td>💻 Language</td><td>Java SE (JDK 8+ recommended; tested on JDK 11 & 17)</td></tr>
+<tr><td>🎨 GUI</td><td>Java Swing (Nimbus Look & Feel)</td></tr>
+<tr><td>🌐 Networking</td><td>java.net.Socket, java.net.ServerSocket</td></tr>
+<tr><td>⚙️ Concurrency</td><td>java.util.concurrent, synchronized collections</td></tr>
+<tr><td>📁 File Transfer</td><td>java.util.Base64</td></tr>
+<tr><td>🧠 IDE (optional)</td><td>IntelliJ IDEA / Eclipse / VS Code</td></tr>
+<tr><td>🖥️ OS</td><td>Windows / macOS / Linux</td></tr>
+</table>
+
+---
+
+<h2>⚙️ Message Protocol</h2>
+
+| Type | Format | Description |
+|------|---------|-------------|
+| 💬 Broadcast | `username: message` | Normal chat message |
+| 🔒 Private Message | `DM::recipient::message` | Sent only to target user |
+| 📁 File Transfer | `FILE::filename::base64` | Sends encoded file |
+| 🟢 Status | `STATUS::status` | Updates user status |
+| 👥 User Event | `USER_EVENT::joined::username / left::username` | Notifies all users |
+
+---
+
+<h2>🏗️ Project Architecture</h2>
++-------------+ +--------------------------+
+| ChatClient | <--TCP--> | ChatServer |
+| (Swing GUI) | | (ServerSocket, Threads) |
++-------------+ +--------------------------+
 
 
-Server: Handles multiple clients using threads and synchronized lists/maps
-Client: Connects via socket, runs background listener thread, updates Swing UI safely using SwingUtilities.invokeLater()
+- **Server:** Handles multiple clients using threads & synchronized data structures  
+- **Client:** Connects via sockets, listens on a background thread, and updates Swing UI safely using `SwingUtilities.invokeLater()`
 
-🧠 Key Classes
-🧩 ChatServer
-Accepts connections
-Spawns ClientHandler threads
-Manages usernames, broadcasts, and statuses
+---
 
-🧩 ChatClient
+<h2>🧠 Key Classes</h2>
 
-GUI using JFrame
-Handles message sending, file sharing, and emoji insertion
-Runs receiver thread for incoming messages
+<h3>🧩 ChatServer</h3>
+<ul>
+  <li>Accepts client connections</li>
+  <li>Spawns <b>ClientHandler</b> threads</li>
+  <li>Manages usernames, broadcasts, and user statuses</li>
+</ul>
 
-🧪 How to Run
- ---  
-1️⃣ Compile
+<h3>🧩 ChatClient</h3>
+<ul>
+  <li>Builds the GUI using JFrame</li>
+  <li>Handles message sending, file sharing, and emoji insertion</li>
+  <li>Runs background thread for receiving messages</li>
+</ul>
+
+---
+
+<h2>🧪 How to Run</h2>
+
+```bash
+# 1️⃣ Compile
 javac ChatServer.java
 javac ChatClient.java
 
-2️⃣ Run Server
+# 2️⃣ Run Server (default port: 1234)
 java ChatServer
 
-
-(Default port: 1234)
-
-3️⃣ Run Client
+# 3️⃣ Run Client
 java ChatClient
+```
 
+<h2>📸 Output Snapshots</h2> <p align="center"> 🖼️ <i>(Add screenshots of your UI and terminal output here)</i> </p>
 
-Enter username, host (default: 127.0.0.1), and port
-Open multiple clients to test multi-user chat
+<h2>🧾 Sample Test Scenarios</h2>
+#	Action	Expected Result
+1️⃣	Two users join	Both see each other in online list
+2️⃣	Send broadcast	All users receive message
+3️⃣	Send private message	Only target user sees message
+4️⃣	Send file	All users prompted to save file
+5️⃣	Change status	User list updates
+6️⃣	Duplicate username	Server rejects and prompts retry
 
-outpot snapppits
-
-
-🧾 Sample Test Scenarios
-Test	Action	Expected Result
-1	Two users join	Both see each other in online list
-2	Send broadcast	All users receive message
-3	Send private message	Only target user sees message
-4	Send file	All users prompted to save file
-5	Change status	User list updates with new status
-6	Duplicate username	Server rejects and prompts retry
-🧵 Concurrency & Safety
-
+<h2>🧵 Concurrency & Safety</h2>
 Each client runs in its own thread
-Uses synchronized collections for shared data
-GUI updates via Event Dispatch Thread (EDT) for Swing safety
+Shared data structures are synchronized
 
-⚠️ Limitations
+GUI updates handled on Event Dispatch Thread (EDT) for Swing safety
 
-Not encrypted (plaintext TCP)
-One thread per client (not scalable to thousands)
-Large files not chunked — may cause memory issues
+<h2>⚠️ Limitations</h2>
+Not encrypted (plain TCP)
+One thread per client (not scalable for large systems)
+No chunked file transfer (large files may cause memory issues)
 No persistent storage or authentication
 
-🔮 Future Enhancements
+<h2>🔮 Future Enhancements</h2>
 🔐 SSL/TLS encrypted sockets
 👤 Login & authentication system
-💾 Database for message history
-🌐 WebSocket version for browser-based chat
+💾 Database for chat history
+🌐 WebSocket version for browser chat
+💬 Group chats & delivery receipts
 
-🧱 Group chats and message delivery receipts
+<h2>🏁 Conclusion</h2>
+This project showcases full-stack Java desktop development — covering networking, concurrency, file transfer, and modern UI design.
+It demonstrates how client-server communication and thread-safe GUI interaction can be integrated into a single, polished application.
 
-🏁 Conclusion
-This project showcases end-to-end Java development — from networking and concurrency to modern GUI design.
-It’s a complete demonstration of client-server communication, thread safety, and user-friendly interaction using Java Swing.
+<h2>📚 References</h2>
+Oracle Java SE Documentation — java.net, java.io, java.nio.file
+Oracle Tutorials: Networking & Swing
+Base64 Encoding — java.util.Base64
