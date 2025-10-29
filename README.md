@@ -106,7 +106,7 @@ java ChatServer
 java ChatClient
 ```
 
-<h2>📸 Output Snapshots</h2> <p align="center"> 🖼️ <i>(Add screenshots of your UI and terminal output here)</i> </p>
+<h2> <img src="chatapplication1.png" alt="Client1"></h2> <p align="center">  <i><img src="chatqppliaction2.png" alt="Client2"></i> </p>
 
 <h2>🧾 Sample Test Scenarios</h2>
 #	Action	Expected Result
